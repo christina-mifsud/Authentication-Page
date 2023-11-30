@@ -4,18 +4,21 @@ import { useAuth } from "../contexts/AuthContext";
 
 // authentication is now handled here in the hook and Login component focuses on rendering and UI interactions.
 
-export function useLogin() {
+export function useSignup() {
   // state
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { setCurrentUser } = useAuth();
 
   // functions
-  const login = async (email, password) => {
+  const signup = async (email, password) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await auth.signInWithEmailAndPassword(email, password);
+      const response = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      )(email, password);
       if (!response.user) {
         throw new Error("Something went wrong!");
       }
@@ -25,10 +28,10 @@ export function useLogin() {
     } catch (error) {
       setError(error.message);
       setIsLoading(false);
-      throw new Error("Error logging out");
+      throw new Error("Error signing up");
     }
   };
 
   // return
-  return { login, isLoading, error };
+  return { signup, isLoading, error };
 }

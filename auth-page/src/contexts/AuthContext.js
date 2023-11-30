@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { auth } from "../firebase";
-import { useLogin } from "../hooks/useLogin";
 
 const AuthContext = React.createContext();
 
@@ -18,8 +17,18 @@ export function AuthProvider({ children }) {
     return auth.createUserWithEmailAndPassword(email, password);
   }
 
-  function logout() {
-    return auth.signOut();
+  function login(email, password) {
+    return auth.signInWithEmailAndPassword(email, password);
+  }
+
+  // how do I test to see if this works?
+  async function logout() {
+    try {
+      await auth.signOut();
+      setCurrentUser(null);
+    } catch (error) {
+      console.error("Error logging out!");
+    }
   }
 
   useEffect(() => {
@@ -30,7 +39,7 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  const value = { currentUser, useLogin, signup, logout };
+  const value = { currentUser, login, signup, logout };
 
   return (
     <AuthContext.Provider value={value}>

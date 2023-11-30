@@ -1,12 +1,20 @@
+////////////////////////////////////
+// HELP! I keep getting "Failed to log in" error
+//////////////////////////////////
+
 import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-import { useAuth } from "../contexts/AuthContext";
+// import { useAuth } from "../contexts/AuthContext";
+import { useLogin } from "../hooks/useLogin";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  // const { login } = useAuth();
+  const { login } = useLogin();
+  // const { login, isLoading, error } = useLogin(); // error with name
+  // can I use the same states I am getting from the hook instead of these 2 below?
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -46,6 +54,8 @@ export default function Login() {
               Log In
             </Button>
           </Form>
+
+          {/* Forgotten password page - CONT HERE */}
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
