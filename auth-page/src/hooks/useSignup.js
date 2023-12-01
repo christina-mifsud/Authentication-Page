@@ -18,8 +18,8 @@ export function useSignup() {
       const response = await auth.createUserWithEmailAndPassword(
         email,
         password
-      )(email, password);
-      if (!response.user) {
+      );
+      if (!response) {
         throw new Error("Something went wrong!");
       }
       setCurrentUser(response.user);
@@ -28,7 +28,7 @@ export function useSignup() {
     } catch (error) {
       setError(error.message);
       setIsLoading(false);
-      throw new Error("Error signing up");
+      throw new Error(error.message);
     }
   };
 

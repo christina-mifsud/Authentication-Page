@@ -13,9 +13,8 @@ export default function Signup() {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   // const { signup } = useAuth();
-  const { signup, isLoading, setIsLoading, error, setError } = useSignup();
-  // const [error, setError] = useState("");
-  // const [loading, setLoading] = useState(false);
+  const { signup, isLoading: isLoadingSignup } = useSignup();
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   async function handleSubmit(event) {
@@ -23,19 +22,10 @@ export default function Signup() {
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
-      // return alert("Passwords do not match");
-    }
-
-    try {
-      setError("");
-      setIsLoading(true);
+    } else {
       await signup(emailRef.current.value, passwordRef.current.value);
       navigate("/");
-    } catch {
-      setError("Failed to create an account"); // <- Error here?
     }
-
-    setIsLoading(false);
   }
 
   return (
@@ -57,7 +47,7 @@ export default function Signup() {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type="password" ref={passwordConfirmRef} required />
             </Form.Group>
-            <Button disabled={isLoading} className="w-100" type="submit">
+            <Button disabled={isLoadingSignup} className="w-100" type="submit">
               Sign Up
             </Button>
           </Form>
