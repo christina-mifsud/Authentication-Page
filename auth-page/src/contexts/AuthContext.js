@@ -22,14 +22,14 @@ export function AuthProvider({ children }) {
   // }
 
   // how do I test to see if this works?
-  async function logout() {
-    try {
-      await auth.signOut();
-      setCurrentUser(null);
-    } catch (error) {
-      console.error("Error logging out!");
-    }
-  }
+  // async function logout() {
+  //   try {
+  //     await auth.signOut();
+  //     setCurrentUser(null);
+  //   } catch (error) {
+  //     console.error("Error logging out!");
+  //   }
+  // }
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  const value = { currentUser, setCurrentUser, logout };
+  const value = { currentUser, setCurrentUser };
 
   return (
     <AuthContext.Provider value={value}>
