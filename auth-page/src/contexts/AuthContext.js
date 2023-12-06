@@ -17,9 +17,9 @@ export function AuthProvider({ children }) {
   //   return auth.createUserWithEmailAndPassword(email, password);
   // }
 
-  function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password);
-  }
+  // function login(email, password) {
+  //   return auth.signInWithEmailAndPassword(email, password);
+  // }
 
   // how do I test to see if this works?
   async function logout() {
@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  const value = { currentUser, setCurrentUser, login, logout };
+  const value = { currentUser, setCurrentUser, logout };
 
   return (
     <AuthContext.Provider value={value}>

@@ -25,7 +25,7 @@ export function useLogin() {
     } catch (error) {
       setError(error.message);
       setIsLoading(false);
-      throw new Error("Error logging out");
+      throw new Error(error.message);
     }
   };
 
