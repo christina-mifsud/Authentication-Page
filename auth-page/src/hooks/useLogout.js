@@ -6,9 +6,9 @@ import { useAuth } from "../contexts/AuthContext";
 
 export function useLogout() {
   // state
+  const { setCurrentUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { setCurrentUser } = useAuth();
 
   // functions
   async function logout() {

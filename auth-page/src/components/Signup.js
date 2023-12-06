@@ -1,10 +1,5 @@
-////////////////////////////////////
-// HELP! I keep getting "TypeError: setError is not a function at handleSubmit" OR "_firebase__WEBPACK_IMPORTED_MODULE_1__.auth.createUserWithEmailAndPassword(...) is not a function"
-//////////////////////////////////
-
 import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-// import { useAuth } from "../contexts/AuthContext";
 import { useSignup } from "../hooks/useSignup";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -12,7 +7,6 @@ export default function Signup() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  // const { signup } = useAuth();
   const { signup, isLoading: isLoadingSignup } = useSignup();
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -47,6 +41,7 @@ export default function Signup() {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type="password" ref={passwordConfirmRef} required />
             </Form.Group>
+
             <Button disabled={isLoadingSignup} className="w-100" type="submit">
               Sign Up
             </Button>

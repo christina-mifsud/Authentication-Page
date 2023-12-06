@@ -6,9 +6,9 @@ import { useAuth } from "../contexts/AuthContext";
 
 export function useLogin() {
   // state
+  const { setCurrentUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { setCurrentUser } = useAuth();
 
   // functions
   const login = async (email, password) => {

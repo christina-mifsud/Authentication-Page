@@ -13,24 +13,6 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  // function signup(email, password) {
-  //   return auth.createUserWithEmailAndPassword(email, password);
-  // }
-
-  // function login(email, password) {
-  //   return auth.signInWithEmailAndPassword(email, password);
-  // }
-
-  // how do I test to see if this works?
-  // async function logout() {
-  //   try {
-  //     await auth.signOut();
-  //     setCurrentUser(null);
-  //   } catch (error) {
-  //     console.error("Error logging out!");
-  //   }
-  // }
-
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);

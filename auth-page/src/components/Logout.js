@@ -1,8 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-// import { useAuth } from "../contexts/AuthContext";
 import { useLogout } from "../hooks/useLogout";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Logout() {
   const { logout, isLoading: isLoadingLogout } = useLogout();
@@ -21,6 +20,7 @@ export default function Logout() {
   }
 
   return (
+    /// what do I return in the logout component? The below card is never showing because I am not navigating to it.
     <div>
       <Card>
         <Card.Body>
@@ -31,8 +31,6 @@ export default function Logout() {
               Log Out
             </Button>
           </Form>
-
-          {/* Forgotten password page - CONT HERE */}
         </Card.Body>
       </Card>
     </div>

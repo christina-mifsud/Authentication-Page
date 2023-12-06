@@ -2,7 +2,7 @@ import { useState } from "react";
 import { auth } from "../firebase";
 import { useAuth } from "../contexts/AuthContext";
 
-// authentication is now handled here in the hook and Login component focuses on rendering and UI interactions.
+// authentication is now handled here in the hook and Signup component focuses on rendering and UI interactions.
 
 export function useSignup() {
   // state

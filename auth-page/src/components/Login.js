@@ -1,13 +1,11 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-// import { useAuth } from "../contexts/AuthContext";
 import { useLogin } from "../hooks/useLogin";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  // const { login } = useAuth();
   const { login, isLoading: isLoadingLogin } = useLogin();
   const [error, setError] = useState("");
   const navigate = useNavigate();
