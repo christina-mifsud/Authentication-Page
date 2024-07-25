@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { auth } from "../firebase";
 import { useAuth } from "../contexts/AuthContext";
+import assert from "assert";
 
 // authentication is now handled here in the hook and Login component focuses on rendering and UI interactions.
 
@@ -16,12 +17,12 @@ export function useLogin() {
     setError(null);
     try {
       const response = await auth.signInWithEmailAndPassword(email, password);
-      if (!response.user) {
-        throw new Error("Something went wrong!");
-      }
+      assert(
+        response.user !== null && response.user !== undefined,
+        "response.user was unexpectedly or undefined!!"
+      );
       setCurrentUser(response.user);
       setIsLoading(false);
-      setError(null);
     } catch (error) {
       setError(error.message);
       setIsLoading(false);
@@ -32,3 +33,5 @@ export function useLogin() {
   // return
   return { login, isLoading, error };
 }
+
+// look into the errors - use 1 system - for example either remove the 'setError(null)'
