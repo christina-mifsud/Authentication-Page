@@ -3,7 +3,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useLogout } from "../hooks/useLogout";
 import { useNavigate } from "react-router-dom";
 
-export default function Logout() {
+export default function LogoutButton() {
   const { logout, isLoading: isLoadingLogout } = useLogout();
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -20,19 +20,10 @@ export default function Logout() {
   }
 
   return (
-    /// what do I return in the logout component? The below card is never showing because I am not navigating to it.
-    <div>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Log Out</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleSubmit}>
-            <Button disabled={isLoadingLogout} className="w-100" type="submit">
-              Log Out
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
+    <div className="w-100 text-center mt-2">
+      <Button variant="link" onClick={handleSubmit}>
+        Log Out
+      </Button>
     </div>
   );
 }

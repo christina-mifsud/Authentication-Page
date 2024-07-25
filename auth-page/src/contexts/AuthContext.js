@@ -13,12 +13,12 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
+  // subscribes/connects to the API - when user logs out at any point in the app (therefore the authorization will be changing) the the currentUser will be updated
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
     });
-    return unsubscribe;
   }, []);
 
   const value = { currentUser, setCurrentUser };
